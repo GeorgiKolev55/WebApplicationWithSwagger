@@ -30,6 +30,8 @@ namespace WebApplicationWithSwagger
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseSwagger();
+
             if (env.IsDevelopment())
             {
                 app.UseSwaggerUI(c =>
@@ -48,7 +50,6 @@ namespace WebApplicationWithSwagger
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            app.UseSwagger();
             app.UseRouting();
 
             app.UseAuthorization();
