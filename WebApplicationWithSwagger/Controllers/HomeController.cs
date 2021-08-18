@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Swashbuckle.AspNetCore.Annotations;
+using WebApplicationWithSwagger.Context;
 using WebApplicationWithSwagger.Models;
 
 namespace WebApplicationWithSwagger.Controllers
@@ -14,11 +15,11 @@ namespace WebApplicationWithSwagger.Controllers
     [ApiController]
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly WebAppContext webAppContext;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(WebAppContext webAppContext)
         {
-            _logger = logger;
+            this.webAppContext = webAppContext;
         }
         [Route("/")]
         [HttpGet]
@@ -33,15 +34,23 @@ namespace WebApplicationWithSwagger.Controllers
             return View();
         }
 
-
-        [Route("/values")]
-        [HttpGet]
-
-        public ActionResult<IEnumerable<string>> GetValues()
-        {
-            return new string[] { "Value_1", "Value_2","Value_3" };
+        [Route("create")]
+        [HttpPost]
+        public IActionResult AddBook(Book book) {
+            this.webAppContext.Books.Add(book);
+            this.webAppContext.SaveChanges();
+            return Ok();
         }
-        
+
+        [Route("delete")]
+        [HttpDelete]
+        public IActionResult RemoveBook(Book book)
+        {
+            this.webAppContext.Books.Remove(book);
+            this.webAppContext.SaveChanges();
+
+            return Ok();
+        }
      
     }
 }
