@@ -22,12 +22,7 @@ namespace WebApplicationWithSwagger.Controllers
         {
             return View();
         }
-        [HttpGet]
-        public DateTime GetDateTime()
-        {
-            return DateTime.Now;
-        }
-
+      
         public IActionResult Privacy()
         {
             return View();
