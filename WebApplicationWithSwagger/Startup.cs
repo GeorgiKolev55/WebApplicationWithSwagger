@@ -12,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using WebApplicationWithSwagger.Context;
+using WebApplicationWithSwagger.Service;
 
 namespace WebApplicationWithSwagger
 {
@@ -29,9 +30,10 @@ namespace WebApplicationWithSwagger
         {
             services.AddControllersWithViews();
             services.AddSwaggerGen();
+            services.AddScoped<BookRepository, BookRepository>();
             services.AddDbContext<WebAppContext>(options =>
            options.UseSqlServer(
-               Configuration.GetConnectionString("DefaultConnection")));
+               Configuration.GetConnectionString("QuotesDatabase")));
 
         }
 
