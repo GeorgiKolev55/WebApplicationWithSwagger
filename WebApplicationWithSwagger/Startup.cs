@@ -4,9 +4,11 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using Azure.Identity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,7 +35,8 @@ namespace WebApplicationWithSwagger
             services.AddScoped<BookRepository, BookRepository>();
             services.AddDbContext<WebAppContext>(options =>
            options.UseSqlServer(
-               Configuration.GetConnectionString("QuotesDatabase")));
+               Configuration.GetConnectionString("DefaultConnection")));
+          
 
         }
 
@@ -42,7 +45,7 @@ namespace WebApplicationWithSwagger
         {
 
              app.UseSwagger();
-
+           
             if (env.IsDevelopment())
             {
                 app.UseSwaggerUI(c =>
