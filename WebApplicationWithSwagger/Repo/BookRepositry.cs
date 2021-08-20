@@ -15,38 +15,30 @@ namespace WebApplicationWithSwagger.Repo
         {
             _appContext = appContext;
         }
-        public async Task AddBookAsync(Book book)
+        public void AddBook(Book book)
         {
-            await _appContext.AddAsync(book);
+            _appContext.Add(book);
 
-            await _appContext.SaveChangesAsync();
+            _appContext.SaveChanges();
         }
 
-        public async Task<Book[]> GetAllBooksAsync()
+        public Book[] GetAllBooks()
         {
-            return await _appContext.Books.ToArrayAsync();
+            return _appContext.Books.ToArray();
         }
 
-        public async Task RemoveBookAsync(Book book)
+        public void RemoveBook(Book book)
         {
-           await Task.Run(() =>
+            _appContext.Remove(book);
 
-             _appContext.Remove(book)
-
-            );
-
-            await _appContext.SaveChangesAsync();
+             _appContext.SaveChanges();
         }
 
-        public async Task UpdateBookAsync(Book book)
+        public void UpdateBook(Book book)
         {
-            await Task.Run(() =>
-
-             _appContext.Update(book)
-
-            );
-
-            await _appContext.SaveChangesAsync();
+            _appContext.Update(book);
+         
+             _appContext.SaveChanges();
         }
     }
 }

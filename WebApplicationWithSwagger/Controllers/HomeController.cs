@@ -33,40 +33,39 @@ namespace WebApplicationWithSwagger.Controllers
 
        
         [HttpPost]
-        public async Task PostBookAsync(Book book)
+        public IActionResult PostBook(Book book)
         {
 
-           await _bookService.AddBookAsync(book);
+           _bookService.AddBook(book);
+            return Ok();
 
         }
 
 
         [HttpDelete]
-        public async Task DeleteBookAsync(Book book)
+        public IActionResult DeleteBoo(Book book)
         {
             
-            
-             await   _bookService.RemoveBookAsync(book);
-           
+             _bookService.RemoveBook(book);
 
+            return Ok();
             
         }
 
        
         [HttpPut]
-        public async Task PutBookAsync(Book book)
+        public IActionResult PutBook(Book book)
         {
-           
-               await _bookService.UpdateBookAsync(book);
-           
-            
+                _bookService.UpdateBook(book);
+
+                return Ok();
         }
 
      
         [HttpGet]
-        public async Task<Book[]> GetAllAsync()
+        public ActionResult<Book[]> GetAll()
         {
-            return await _bookService.GetAllBooksAsync();
+            return  _bookService.GetAllBooks();
         }
 
     }

@@ -8,16 +8,16 @@ namespace WebApplicationWithSwagger.Service
 {
     public interface IBookService
     {
-        public Task AddBookAsync(Book book);
+        public void AddBook(Book book);
 
 
-        public Task RemoveBookAsync(Book book);
+        public void RemoveBook(Book book);
 
 
-        public Task UpdateBookAsync(Book book);
+        public void UpdateBook(Book book);
 
 
-        public Task<Book[]> GetAllBooksAsync();
+        public Book[] GetAllBooks();
       
     }
 }

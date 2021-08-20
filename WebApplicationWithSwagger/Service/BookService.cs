@@ -17,35 +17,35 @@ namespace WebApplicationWithSwagger.Service
         }
 
         
-        public async Task AddBookAsync(Book book)
+        public void AddBook(Book book)
         {
 
-          await  _bookRepository.AddBookAsync(book);
+          _bookRepository.AddBook(book);
            
         }
 
        
-        public async Task RemoveBookAsync(Book book)
+        public void RemoveBook(Book book)
         {
 
-            await _bookRepository.RemoveBookAsync(book);
+            _bookRepository.RemoveBook(book);
             
         }
         
 
-        public async Task UpdateBookAsync(Book book)
+        public void UpdateBook(Book book)
         {
 
-            await _bookRepository.UpdateBookAsync(book);
+            _bookRepository.UpdateBook(book);
            
         }
       
 
        
 
-        public async Task<Book[]> GetAllBooksAsync()
+        public Book[] GetAllBooks()
         {
-            return await _bookRepository.GetAllBooksAsync();
+            return _bookRepository.GetAllBooks();
         }
     }
 }
