@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApplicationWithSwagger.Models;
@@ -13,6 +14,8 @@ namespace WebApplicationWithSwagger.Context
         {
 
         }
+
+     
         public DbSet<Book> Books { get; set; }
     }
 }
