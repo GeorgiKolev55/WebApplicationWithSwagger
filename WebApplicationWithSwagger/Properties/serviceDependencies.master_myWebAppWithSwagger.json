@@ -3,8 +3,8 @@
     "mssql1": {
       "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/webapplicationwithswaggerdbserver/databases/WebApplicationWithSwagger_db",
       "type": "mssql.azure",
-      "connectionId": "WebAppContext",
-      "secretStore": "AzureAppSettings"
+      "connectionId": "ConnectionStrings:DefaultConnection",
+      "secretStore": "AzureKeyVault"
     }
   }
 }
