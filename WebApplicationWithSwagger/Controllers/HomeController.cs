@@ -14,70 +14,59 @@ namespace WebApplicationWithSwagger.Controllers
 {
 
     [ApiController]
-    public class HomeController : Controller
+    [Route("[controller]")]
+    public class BookController : Controller
     {
-        private readonly BookRepository bookRepository;
+        private readonly IBookService _bookService;
 
-        public HomeController(BookRepository bookRepository)
+        public BookController(IBookService bookService)
         {
-            this.bookRepository = bookRepository;
+            _bookService = bookService;
         }
 
-        [Route("/")]
-        [HttpGet]
+  
+       [HttpGet("/")]
         public IActionResult Index()
         {
             return View();
         }
 
-        [Route("/privacy")]
-        [HttpGet]
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [Route("createBook")]
+       
         [HttpPost]
-        public IActionResult AddBook(Book book)
+        public async Task PostBookAsync(Book book)
         {
-            if (ModelState.IsValid)
-            {
-                this.bookRepository.AddBook(book);
-            }
-            return Ok();
+
+           await _bookService.AddBookAsync(book);
+
         }
 
-        [Route("deleteBook")]
+
         [HttpDelete]
-        public IActionResult RemoveBook(Book book)
+        public async Task DeleteBookAsync(Book book)
         {
-            if (ModelState.IsValid)
-            {
-                bookRepository.RemoveBook(book);
-            }
+            
+            
+             await   _bookService.RemoveBookAsync(book);
+           
 
-            return Ok();
-        }
-
-        [Route("updateBook")]
-        [HttpPut]
-        public IActionResult UpdateBook(Book book)
-        {
-            if (ModelState.IsValid)
-            {
-                this.bookRepository.UpdateBook(book);
-            }
-
-            return Ok();
             
         }
 
-        [Route("GetAllBooks")]
-        [HttpGet]
-        public ActionResult<Book[]> GetAllBooks()
+       
+        [HttpPut]
+        public async Task PutBookAsync(Book book)
         {
-            return this.bookRepository.GetAllBooks();
+           
+               await _bookService.UpdateBookAsync(book);
+           
+            
+        }
+
+     
+        [HttpGet]
+        public async Task<Book[]> GetAllAsync()
+        {
+            return await _bookService.GetAllBooksAsync();
         }
 
     }

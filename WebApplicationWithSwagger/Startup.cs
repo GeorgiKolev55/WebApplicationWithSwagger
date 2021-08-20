@@ -13,8 +13,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Configuration;
 using WebApplicationWithSwagger.Context;
 using WebApplicationWithSwagger.Service;
+using AspNetCore;
+using WebApplicationWithSwagger.Repo;
 
 namespace WebApplicationWithSwagger
 {
@@ -30,9 +33,12 @@ namespace WebApplicationWithSwagger
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+        
+           
             services.AddControllersWithViews();
             services.AddSwaggerGen();
-            services.AddScoped<BookRepository, BookRepository>();
+            services.AddScoped<IBookService, BookService>();
+            services.AddScoped<IBookRepository, BookRepositry>();
             services.AddDbContext<WebAppContext>(options =>
            options.UseSqlServer(
                Configuration.GetConnectionString("DefaultConnection")));
@@ -43,8 +49,8 @@ namespace WebApplicationWithSwagger
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-
-             app.UseSwagger();
+         
+            app.UseSwagger();
            
             if (env.IsDevelopment())
             {
@@ -73,7 +79,7 @@ namespace WebApplicationWithSwagger
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Book}/{action=Index}/{id?}");
             });
         }
     }
