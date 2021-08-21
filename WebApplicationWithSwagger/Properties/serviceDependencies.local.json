@@ -1,10 +1,10 @@
 {
   "dependencies": {
     "mssql1": {
-      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/webapplicationwithswaggerdbserver/databases/WebApplicationWithSwagger_db",
-      "type": "mssql.azure",
+      "type": "mssql",
       "connectionId": "ConnectionStrings:DefaultConnection",
-      "secretStore": "AzureKeyVault"
+      "suggestion": "true",
+      "ignored": "true"
     }
   }
 }

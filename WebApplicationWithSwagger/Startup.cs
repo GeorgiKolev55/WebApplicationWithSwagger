@@ -1,23 +1,14 @@
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
-using Azure.Identity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System.Configuration;
 using WebApplicationWithSwagger.Context;
 using WebApplicationWithSwagger.Service;
-using AspNetCore;
 using WebApplicationWithSwagger.Repo;
+using WebApplicationWithSwagger.Infrastructure;
 
 namespace WebApplicationWithSwagger
 {
@@ -50,7 +41,7 @@ namespace WebApplicationWithSwagger
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-         
+          //  app.PrepareDatabase();
             app.UseSwagger();
            
             if (env.IsDevelopment())

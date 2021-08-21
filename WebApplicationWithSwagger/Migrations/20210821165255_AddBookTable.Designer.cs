@@ -9,8 +9,8 @@ using WebApplicationWithSwagger.Context;
 namespace WebApplicationWithSwagger.Migrations
 {
     [DbContext(typeof(WebAppContext))]
-    [Migration("20210820171937_create-migration Testing")]
-    partial class createmigrationTesting
+    [Migration("20210821165255_AddBookTable")]
+    partial class AddBookTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
