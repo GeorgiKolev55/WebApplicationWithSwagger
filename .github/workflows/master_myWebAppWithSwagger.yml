@@ -53,5 +53,5 @@ jobs:
       with:
         app-name: 'myWebAppWithSwagger'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_1607ce728c7840ebbb56bea0e31c54dc }}
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_e45690d9b8574d8388c77263219b6f0f }}
         package: .
